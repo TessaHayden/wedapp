@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
+  category: {
+    type: String
+  },
   sku: {
     type: Number,
   },
@@ -12,9 +15,9 @@ const ProductSchema = new Schema({
   description: {
     type: String,
   },
-  img: {
+  img: [{
     type: String,
-  },
+  }],
   price: {
     type: Number
   },
@@ -26,7 +29,6 @@ const ProductSchema = new Schema({
     default: false
   },
 });
-
 
 const Product = mongoose.model("Product", ProductSchema);
 export default Product;

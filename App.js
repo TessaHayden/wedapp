@@ -24,7 +24,7 @@ app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
 
 //flash configuration
 app.use(session({
-  secret: 'no-secret-key',
+  secret: 'SECRET_KEY',
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -43,6 +43,7 @@ app.use('/', indexRouter);
 app.use('/signup', indexRouter);
 import productsRouter from "./server/routes/products.mjs";
 app.use("/products", productsRouter);
+app.use('/products/inventory', productsRouter);
 import projectsRouter from "./server/routes/projects.mjs";
 app.use("/projects", projectsRouter);
 import meeRouter from "./server/routes/mee.mjs";
