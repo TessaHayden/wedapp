@@ -1,5 +1,4 @@
 import User from "../models/User.mjs";
-import connectDB from "../config/db.mjs";
 
 export const homepage = async (req, res) => {
   const locals = {
@@ -29,7 +28,7 @@ export const postsignup = async (req, res) => {
   
   try {
     await User.create(newUser)
-
+    
     res.redirect('/');
   } catch (error) {
     console.log(error);
