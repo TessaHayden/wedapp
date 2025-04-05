@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%-locals.title%></title>
+</head>
+<body>
+  <div class="container">
+    <form action="/signup" method="post">
+      <label for="fname">First Name</label>
+      <input type="text" placeholder="Enter your first name" name="fname" id="fnameinp" required>
+  
+      <label for="lname">Last Name</label>
+      <input type="text" placeholder="Enter your last name" name="lname" id="lnameinp" required>
+  
+      <label for="username">Username</label>
+      <input type="username" placeholder="Enter a user name" name="username" id="usernameinp" required>
+  
+      <label for="email">Email</label>
+      <input type="email" placeholder="Enter your email" name="email" id="emailinp" required>
+  
+      <label for="password">Password</label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <button type="submit">Sign up</button>
+    </form>
+  </div>
+</body>
+</html>

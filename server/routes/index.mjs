@@ -1,14 +1,8 @@
 import express from "express";
-import { ObjectId } from "mongodb";
-import path from "path";
+import * as homeController from '../controllers/homeController.mjs';
 
 const indexRouter = express.Router();
 
-indexRouter.get("/", (req, res) => {
-  res.render("index", {
-    title: "The Wednesday App",
-    layout: "./layouts/index-page",
-  });
-});
+indexRouter.get('/', homeController.homepage);
 
 export default indexRouter;

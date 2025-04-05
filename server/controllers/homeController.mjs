@@ -1,4 +1,3 @@
-
 export const homepage = async (req, res) => {
 
   const locals = {
@@ -7,4 +6,10 @@ export const homepage = async (req, res) => {
   }
   res.render('index', locals);
 }
-
+export const signup = async (req, res) => {
+  const locals = {
+    title: "Sign up",
+    description: "Sign up for the Wednesday App",
+  };
+  res.render('signup', locals);
+}

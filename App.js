@@ -18,17 +18,13 @@ app.set('layout', './layouts/home');
 app.set('view engine', 'ejs');
 
 //setting up routes
-import router from './server/routes/index.mjs';
-app.use('/', router);
-
-import usersRouter from "./server/routes/users.mjs";
+import indexRouter from './server/routes/index.mjs';
+app.use('/', indexRouter);
 import productsRouter from "./server/routes/products.mjs";
-import projectsRouter from "./server/routes/projects.mjs";
-import meeRouter from "./server/routes/mee.mjs";
-
 app.use("/products", productsRouter);
+import projectsRouter from "./server/routes/projects.mjs";
 app.use("/projects", projectsRouter);
-app.use("/users", usersRouter);
+import meeRouter from "./server/routes/mee.mjs";
 app.use("/mee", meeRouter);
 
 app.get('', (req, res) => {
