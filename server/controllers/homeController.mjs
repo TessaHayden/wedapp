@@ -1,3 +1,6 @@
+import User from "../models/User.mjs";
+import connectDB from "../config/db.mjs";
+
 export const homepage = async (req, res) => {
   const locals = {
     title: 'Home',
@@ -15,3 +18,20 @@ export const signup = async (req, res) => {
   res.render('signup', locals);
 };
 
+export const postsignup = async (req, res) => {
+  const newUser = new User({
+    fname: req.body.fname,
+    lname: req.body.lname,
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  })
+  
+  try {
+    await User.create(newUser)
+
+    res.redirect('/');
+  } catch (error) {
+    console.log(error);
+  }
+};
