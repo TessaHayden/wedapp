@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%- title %></title>
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="/css/header.css">
+  <link rel="stylesheet" type="text/css" href="/css/categorycard.css">
+
+</head>
+<body>
+  <%-include('../components/header') %>
+
+  <h2>Product Home Page</h2>
+  <div class="product-categories">
+  
+    <div class="category-card">
+      <a href="products/microphones">
+        <div class="card-img"><img src="images/products/microphone1.jpg" alt="microphone1"></div>
+      </a>
+      <div class="card-title">
+        <h4>Microphones</h4>
+      </div>
+    </div>
+  
+    <div class="category-card">
+      <div class="card-img"><a href="products/instruments"><img src="images/products/guitar-gibson3.JPG" alt="gibson guitar"></a></div>
+      <div class="card-title">
+        <h4>Instruments</h4>
+      </div>
+    </div>
+  
+    <div class="category-card">
+      <div class="card-img"><a href="products/mixers"><img src="images/products/mixer-img.JPG" alt="mixer image"></a></div>
+      <div class="card-title">
+        <h4>Studio mixers</h4>
+      </div>
+    </div>
+  
+    <div class="category-card">
+      <div class="card-img"><a href="products/parts"><img src="images/products/sony-parts3.JPG" alt=""></a></div>
+      <div class="card-title">
+        <h4>Parts</h4>
+      </div>
+    </div>
+  
+    <div class="category-card">
+      <div class="card-img"><a href="products/scooters"><img src="images/products/scooter1a1.jpg" alt=""></a></div>
+      <div class="card-title">
+        <h4>Scooters</h4>
+      </div>
+    </div>
+  
+    <div class="category-card">
+      <div class="card-img"><a href="products/vacuumcleaners"><img src="images/products/vaccum-cleaners.jpg" alt=""></a></div>
+      <div class="card-title">
+        <h4>Vacuum Cleaners</h4>
+      </div>
+    </div>
+  
+  </div>
+<%-include('../components/footer')%>
+</body>
+</html>

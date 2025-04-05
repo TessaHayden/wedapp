@@ -21,6 +21,16 @@ app.set('view engine', 'ejs');
 import router from './server/routes/index.mjs';
 app.use('/', router);
 
+import usersRouter from "./server/routes/users.mjs";
+import productsRouter from "./server/routes/products.mjs";
+import projectsRouter from "./server/routes/projects.mjs";
+import meeRouter from "./server/routes/mee.mjs";
+
+app.use("/products", productsRouter);
+app.use("/projects", projectsRouter);
+app.use("/users", usersRouter);
+app.use("/mee", meeRouter);
+
 app.get('', (req, res) => {
   res.status(404).send("There was a problem retrieving the resources you requested")
 })

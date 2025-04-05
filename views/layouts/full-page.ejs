@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="/css/header.css">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+
+<body>
+    <%-include('../components/header')%>
+  
+
+  <div class="wrapper">
+
+      <main>
+        <%- body %>
+      </main>
+
+      <%-include('../components/footer')%>
+  </div>
+</body>
+
+</html>
