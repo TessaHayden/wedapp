@@ -4,6 +4,8 @@ import expressLayout from 'express-ejs-layouts';
 import connectDB from './server/config/db.mjs';
 import flash from 'express-flash';
 import session from 'express-session';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const port = 3000 || process.env.PORT;
@@ -13,8 +15,12 @@ connectDB();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static('public'));
-app.use('/images', express.static('public', 'images'));
+//configure static files
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
 
 //flash configuration
 app.use(session({

@@ -1,0 +1,73 @@
+{
+  "instruments": [
+    {
+      "guitars": [
+        {
+          "sku": 1,
+          "name": "guitar",
+          "description": "rare",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/guitar-gibson.JPG",
+          "price": 3600,
+          "quanity": 0,
+          "instock": false
+        },
+        {
+          "sku": 2,
+          "name": "LTD guitar",
+          "description": "sparkly",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/guitar-ltd.jpg",
+          "price": 600,
+          "quanity": 1,
+          "instock": true
+        },
+        {
+          "sku": 3,
+          "name": "ibanez red",
+          "description": "acoustic",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/guitar-red-iban.JPG",
+          "price": 450,
+          "quanity": 12,
+          "instock": true
+        },
+        {
+          "sku": 4,
+          "name": "acou Ibanez",
+          "description": "sunburst",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/guitar-sunburst.JPG",
+          "price": 560,
+          "quanity": 4,
+          "instock": true
+        },
+        {
+          "sku": 5,
+          "name": "Vintage guitar",
+          "description": "vintage parlor",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/guitar-vintage-parlor.JPG",
+          "price": 200,
+          "quanity": 1,
+          "instock": true
+        }
+      ],
+      "violins": [
+        {
+          "sku": 6,
+          "name": "pink violin",
+          "description": "pink",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/violin-pink.JPG",
+          "price": 360,
+          "quanity": 2,
+          "instock": true
+        },
+        {
+          "sku": 7,
+          "name": "electric violin",
+          "description": "electric violin",
+          "img": "/Users/tessahayden/Desktop/wednesday/public/images/products/electric-violin.jpg",
+          "price": 400,
+          "quanity": 1,
+          "instock": true
+        }
+      ]
+    }
+  ]
+}
