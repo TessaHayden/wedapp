@@ -20,6 +20,7 @@ app.set('view engine', 'ejs');
 //setting up routes
 import indexRouter from './server/routes/index.mjs';
 app.use('/', indexRouter);
+app.use('/signup', indexRouter);
 import productsRouter from "./server/routes/products.mjs";
 app.use("/products", productsRouter);
 import projectsRouter from "./server/routes/projects.mjs";
