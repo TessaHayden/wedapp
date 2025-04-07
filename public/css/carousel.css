@@ -1,4 +1,5 @@
 body {
+  display: grid;
   background-color: white;
 }
 
@@ -9,15 +10,7 @@ header {
   margin: 1rem;
 }
 
-main {
-  width: 100vw;
-  justify-items: center;
-  padding: 3%;
-}
-
 img {
-  width: 700px;
-  height: 700px;
   object-fit: cover;
 }
 
@@ -38,5 +31,9 @@ a {
 .site-links {
   display: flex;
   width: 100vw;
+  justify-content: center;
+}
+.wrapper {
+  display:flex;
   justify-content: center;
 }

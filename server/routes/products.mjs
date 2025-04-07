@@ -1,10 +1,13 @@
 import express from "express";
 import * as productController from '../controllers/productController.mjs';
+import multer from "multer";
 
 const productsRouter = express.Router();
+const upload = multer({ dest: '../data/uploads' });
 
 productsRouter.get("/", productController.productspage);
-productsRouter.get("/products/inventory", productController.inventorypage);
-productsRouter.post("/products/inventory", productController.addinventory);
+productsRouter.get("/inventory", productController.inventory);
+productsRouter.post("/", upload.array('img', 5), productController.postinventory);
+productsRouter.get("/instruments", productController.productcards);
 
 export default productsRouter;

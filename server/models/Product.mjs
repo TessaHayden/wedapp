@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
   category: {
-    type: String
+    type: String,
   },
   sku: {
-    type: Number,
+    type: mongoose.Types.ObjectId,
   },
   name: {
     type: String,
@@ -15,18 +15,22 @@ const ProductSchema = new Schema({
   description: {
     type: String,
   },
-  img: [{
-    type: String,
-  }],
+  img: {
+    filename: String,
+    path: String,
+    originalname: String,
+    mimetype: String,
+    size: Number,
+  },
   price: {
-    type: Number
+    type: Number,
   },
   quantity: {
     type: Number,
   },
   instock: {
     type: Boolean,
-    default: false
+    default: false,
   },
 });
 

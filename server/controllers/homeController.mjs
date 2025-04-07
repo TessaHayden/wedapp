@@ -34,3 +34,12 @@ export const postsignup = async (req, res) => {
     console.log(error);
   }
 };
+
+export const loginpg = async (req, res) => {
+  const locals = {
+    title: "Login",
+    description: "Login on the Wednesday App",
+    layout: "login",
+  };
+  res.render("login", locals);
+};

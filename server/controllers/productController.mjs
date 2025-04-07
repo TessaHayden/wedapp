@@ -6,19 +6,21 @@ export const productspage = async (req, res) => {
     description: "The Wednesday App shopping page",
     layout: './layouts/productlanding'
   };
-  res.render("products", locals);
+  res.render('products', locals);
 };
 
-export const instrumentspage = async (req, res) => {
-  const locals = {
-    title: "Instruments",
-    description: "Shop page for instruments",
-    layout: './layouts/prodpage'
-  };
-  res.render("instruments", locals);
-}
+export const productcards = async (req, res) => {
 
-export const inventorypage = async (req, res) => {
+  try {
+   const productitm = await Product.find({}).limit(6);
+    res.render('instruments', { title: "Instruments",
+    layout: "./layouts/prodpage", productitm});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const inventory = async (req, res) => {
     const locals = {
       title: "CRUD",
       description: "CRUD page for site manager to update inventory",
@@ -27,25 +29,23 @@ export const inventorypage = async (req, res) => {
   res.render('inventory', locals);
 }
 
-export const addinventory = async (req, res) => {
-  const newProduct = await new Product({
+export const postinventory = async (req, res) => {
+  const newProduct = new Product({
     category: req.body.category,
-    sku: req.body.sku,
+    sku: req.body._id,
     name: req.body.name,
     description: req.body.description,
-    image: req.body.image,
+    img: req.files,
     price: req.body.price,
     quantity: req.body.quantity,
     instock: req.body.instock,
   });
-  const locals = {
-    title: "CRUD",
-    description: "CRUD page for site manager to update inventory",
-    layout: "./layouts/inventorylo",
-  };  
     try {
       await Product.create(newProduct);
-      res.redirect("products");
+      const locals = {
+        layout: './layouts/full-page'
+      }
+      res.render('success', locals);
     } catch (error) {
       console.log(error);
     }

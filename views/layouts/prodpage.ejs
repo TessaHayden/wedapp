@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= locals.title%></title>
+  <title><%=title%></title>
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
   <link rel="stylesheet" type="text/css" href="/css/header.css">    
@@ -16,7 +16,35 @@
     <div class="page-name"><h3>Product Items</h3></div>
     <div class="wrapper">
       
-      <%-include('../components/sidebar')%>
+      <div class="sidebar-layout">
+        <side>Sidebar</side>
+        <main>
+          <% productitm.forEach(element=> { %>
+            <div class="card-container">
+              <div class="card">
+                <div class="card-img">
+                  <img src="..." alt="product name">
+                </div>
+                <div class="card-title">
+                  <h4>
+                    <%= element.name %>
+                  </h4>
+                </div>
+                <div class="card-body">
+                  <p>
+                    <%= element.description %>
+                  </p>
+                  <p>
+                    <%= element.price %>
+                  </p>
+                </div>
+                <button type="submit" class="card-btn">Add to cart</button>
+              </div>
+            </div>
+            <% }) %>
+      
+        </main>
+      </div>
       
     </div>
     <%-include('../components/footer')%>

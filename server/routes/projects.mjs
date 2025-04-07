@@ -7,7 +7,7 @@ const projectsRouter = express.Router();
 projectsRouter.get("/", (req, res) => {
   res.render("projects", {
     title: "The Wednesday App",
-    layout: "./layouts/full-page",
+    layout: "projects",
   });
 });
 
