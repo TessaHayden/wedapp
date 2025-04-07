@@ -1,4 +1,8 @@
 import Product from "../models/Product.mjs";
+import fs from 'fs';
+import { console } from "inspector/promises";
+import path from "path";
+
 
 export const productspage = async (req, res) => {
   const locals = {
@@ -9,22 +13,100 @@ export const productspage = async (req, res) => {
   res.render('products', locals);
 };
 
-export const productcards = async (req, res) => {
+export const instrumentcards = async (req, res) => {
+  let perpage = 9;
+  let page = req.query.page || 1;
 
   try {
-   const productitm = await Product.find({}).limit(6);
-    res.render('instruments', { title: "Instruments",
-    layout: "./layouts/prodpage", productitm});
+    const productitm = await Product.aggregate([{ $sort: { category: 'instruments' } }])
+      .skip(perpage * page - perpage)
+      .limit(perpage)
+      .exec();
+    const countinstruments = await Product.count();
+
+    res.render('instruments', {
+      title: "Instruments",
+      layout: "./layouts/prodpage",
+      productitm,
+      current: page,
+      pages: Math.ceil( count / perpage)});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const microphonecards = async (req, res) => {
+  try {
+    const productitm = await Product.find({}).limit(6);
+    res.render("microphones", {
+      title: "Microphones",
+      layout: "./layouts/prodpage",
+      productitm,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const studiocards = async (req, res) => {
+  try {
+    const productitm = await Product.find({}).limit(6);
+    res.render("studio", {
+      title: "Studio",
+      layout: "./layouts/prodpage",
+      productitm,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const partscards = async (req, res) => {
+  try {
+    const productitm = await Product.find({}).limit(6);
+    res.render("parts", {
+      title: "Parts",
+      layout: "./layouts/prodpage",
+      productitm,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const vintagecards = async (req, res) => {
+  try {
+    const productitm = await Product.find({}).limit(6);
+    res.render("vintage", {
+      title: "Vintage",
+      layout: "./layouts/prodpage",
+      productitm,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const misccards = async (req, res) => {
+  try {
+    const productitm = await Product.find({}).limit(6);
+    res.render("misc", {
+      title: "Misc",
+      layout: "./layouts/prodpage",
+      productitm,
+    });
   } catch (error) {
     console.log(error);
   }
 };
 
 export const inventory = async (req, res) => {
+    const categories = ['microphones', 'instruments', 'studio', 'parts', 'vintage', 'misc'];
     const locals = {
       title: "CRUD",
       description: "CRUD page for site manager to update inventory",
       layout: "./layouts/inventorylo",
+      categories
     };
   res.render('inventory', locals);
 }
@@ -32,7 +114,7 @@ export const inventory = async (req, res) => {
 export const postinventory = async (req, res) => {
   const newProduct = new Product({
     category: req.body.category,
-    sku: req.body._id,
+    type: req.body.type,
     name: req.body.name,
     description: req.body.description,
     img: req.files,
@@ -40,11 +122,13 @@ export const postinventory = async (req, res) => {
     quantity: req.body.quantity,
     instock: req.body.instock,
   });
-    try {
-      await Product.create(newProduct);
-      const locals = {
-        layout: './layouts/full-page'
-      }
+  try {
+    await Product.create(newProduct);
+    const itmname = newProduct.name;
+    const locals = {
+      layout: './layouts/full-page',
+      itmname
+    };
       res.render('success', locals);
     } catch (error) {
       console.log(error);

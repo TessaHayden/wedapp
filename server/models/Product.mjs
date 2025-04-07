@@ -5,9 +5,10 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
   category: {
     type: String,
+    enum: ['microphones', 'instruments', 'studio', 'parts', 'vintage', 'misc']
   },
-  sku: {
-    type: mongoose.Types.ObjectId,
+  type: {
+    type: String,
   },
   name: {
     type: String,
