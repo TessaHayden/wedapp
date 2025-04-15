@@ -2,16 +2,17 @@ import 'dotenv/config';
 import express from 'express';
 import expressLayout from 'express-ejs-layouts';
 import connectDB from './server/config/db.mjs';
-import session from 'express-session';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 
 const app = express();
 const port = 3000 || process.env.PORT;
 
+
 connectDB();
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //configure static files
@@ -25,7 +26,7 @@ app.use(expressLayout);
 app.set('layout', './layouts/home');
 app.set('views', [
   path.join(__dirname, 'views'),
-  path.join(__dirname, 'views/productsfld/')
+  path.join(__dirname, 'views/products')
 ])
 app.set('view engine', 'ejs');
 

@@ -12,22 +12,29 @@
   <div class="container">
     <form id="crud-form" action="/products/inventory" method="post" enctype="multipart/form-data">
       <div><h3>INVENTORY CRUD PAGE</h3></div>
+
+      <div class="mb-3 hidden">
+        <label for="_id" class="form-label" hidden>ID</label>
+        <input type="text" name="_id" class="form-control" id="_id" aria-describedby="_id" hidden>
+      </div>
+
       <div class="mb-3">
 
       <label class="form-label" for="category">Category:</label>
       <select id="category" class="form-control" name="category" >
         <option value="">Choose...</option>
-        <% categories.forEach(category=> { %>
-          <option  value="<%= category %>">
-            <%= category %>
-          </option>
-          <% }); %>
+        <option value="microphones">Microphones</option>
+        <option value="instruments">Instruments</option>
+        <option value="studio">Studio</option>
+        <option value="parts">Parts</option>
+        <option value="vintage">Vintage</option>
+        <option value="misc">Misc</option>
       </select>
 
       </div>
       <div class="mb-3">
-        <label for="type" class="form-label">Type</label>
-        <input type="text" name="type" class="form-control" id="type" aria-describedby="type">
+        <label for="modelType" class="form-label">Type</label>
+        <input type="text" name="modelType" class="form-control" id="modelType" aria-describedby="type">
       </div>
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -35,7 +42,7 @@
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea type="text" name="description" class="form-control" id="description" rows="3"></textarea>
+        <textarea type="text" name="description" class="form-control" id="description" aria-describedby="description"rows="3"></textarea>
       </div>
       <div class="mb-3">
         <label for="img" class="form-label">Upload images</label>
@@ -43,7 +50,7 @@
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" name="price" class="form-control" id="price">
+        <input type="number" name="price" class="form-control" id="price" aria-describedby="price">
       </div>
       <div class="mb-3">
         <label for="quantity" class="form-label">Quantity</label>
@@ -51,7 +58,7 @@
       </div>
       <div class="mb-3">
         <label for="instock" class="form-label">In Stock</label>
-        <input class="form-check-input" name="instock" type="checkbox" value="true" id="instock">
+        <input class="form-check-input" name="instock" type="checkbox" value="true" id="instock" aria-describedby="instock">
         
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
