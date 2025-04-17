@@ -1,4 +1,5 @@
 import User from "../models/User.mjs";
+import crypto, { createHmac } from 'node:crypto';
 
 export const homepage = async (req, res) => {
   const locals = {
@@ -18,24 +19,22 @@ export const signup = async (req, res) => {
 };
 
 export const postsignup = async (req, res) => {
+
+  let { fname, lname, username, email, password } = req.body;
+  const newUser = new User({
+    fname,
+    lname,
+    username,
+    email,
+    password,
+  });
+
   try {
-    const data = req.body.password;
-    function hashData(data) {
-    return crypto.createHash("sha256").update(data).digest("hex");
-    }
-    
-    const newUser = new User({
-      fname: req.body.fname,
-      lname: req.body.lname,
-      username: req.body.username,
-      email: req.body.email,
-      password: hashData,
-    });
 
     await User.create(newUser);
     const locals = {
       layout: './layouts/full-page',
-      successMsg: `Congratulations ${newUser.fname}!  Your registration was completed successfully. Login using your username: ${newUser.username} and password.`
+      successMsg: `Congratulations ${newUser.fname}!  Your registration was completed successfully.`
     };
     res.render("success", locals);
   } catch (error) {
@@ -44,10 +43,24 @@ export const postsignup = async (req, res) => {
 };
 
 export const loginpg = async (req, res) => {
-  const locals = {
+ 
+    const locals = {
     title: "Login",
     description: "Login on the Wednesday App",
     layout: "login",
+    };
+  
+    const loginUser = User.find(user => user.username == req.body.username)
+    if (user == null) {
+      return res.send("400 user not found");
   };
-  res.render("login", locals);
+
+  try {
+
+    
+    res.render("login", locals);
+
+  } catch (error) {
+    console.log(error);
+  }
 };

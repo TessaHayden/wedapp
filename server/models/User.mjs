@@ -28,7 +28,7 @@ const UserSchema = new Schema({
     required: "Email address is required",
   },
   password: {
-    type: String,
+    type: String, 
     required: "Create a password",
   },
   admin: {
@@ -36,7 +36,6 @@ const UserSchema = new Schema({
     default: false,
   },
 });
-
 
 const User = mongoose.model("User", UserSchema);
 export default User;
