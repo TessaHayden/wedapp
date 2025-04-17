@@ -49,18 +49,36 @@ export const loginpg = async (req, res) => {
     description: "Login on the Wednesday App",
     layout: "login",
     };
-  
-    const loginUser = User.find(user => user.username == req.body.username)
-    if (user == null) {
-      return res.send("400 user not found");
-  };
 
   try {
 
-    
     res.render("login", locals);
 
   } catch (error) {
     console.log(error);
   }
 };
+
+export const postlogin = async (req, res) => {
+  try {
+    const query = {username: req.body.username}
+    const user = await User.findOne(query);
+    if (user == null) {
+      return res.status(400).send('User was not found');
+    };
+    if (req.body.username !== user.username || req.body.password !== user.password) {
+      return res.status(400).send('Username or password does not match our records');
+    };
+    const locals = {
+      title: "Login",
+      description: "Login to the Wednesday App",
+      layout: "./layouts/full-page",
+      successMsg: `Welcome ${user.username}, you are logged in.`,
+    };
+    res.render('success', locals)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+

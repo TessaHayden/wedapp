@@ -7,4 +7,5 @@ indexRouter.get('/', homeController.homepage);
 indexRouter.get('/signup', homeController.signup);
 indexRouter.post('/signup', homeController.postsignup);
 indexRouter.get('/login', homeController.loginpg);
+indexRouter.post('/login', homeController.postlogin);
 export default indexRouter;
