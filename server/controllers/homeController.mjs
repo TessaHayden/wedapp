@@ -20,7 +20,6 @@ export const signup = async (req, res) => {
   res.render("signup", locals);
 };
 
-//----------------------------------
 
 export const postsignup = async (req, res) => {
 
