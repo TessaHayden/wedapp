@@ -5,37 +5,46 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "User"
   },
   fname: {
     type: String,
-    required: "Please enter your first name",
+    required: "Please enter your first name"
   },
   lname: {
     type: String,
-    required: "Please enter your last name",
+    required: "Please enter your last name"
   },
   username: {
     type: String,
     required: "Please enter a username",
-    unique: true,
+    unique: true
   },
   email: {
     type: String,
     trim: true,
     lowercase: true,
     unique: true,
-    required: "Email address is required",
+    required: "Email address is required"
   },
   password: {
-    type: String, 
-    required: "Create a password",
+    type: String,
+    required: "Create a password"
+  },
+  salt: {
+    type: String
   },
   admin: {
     type: Boolean,
     default: false,
   },
-});
+},
+  {
+    timestamps: {
+      createdAt: true,
+      updatedAt: true
+  }
+  });
 
 const User = mongoose.model("User", UserSchema);
 export default User;

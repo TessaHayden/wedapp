@@ -1,5 +1,7 @@
 import User from "../models/User.mjs";
-import crypto, { createHmac } from 'node:crypto';
+import { console } from "node:inspector/promises";
+import { salt, hashPassword, comparePassword } from '../config/auth.mjs';
+
 
 export const homepage = async (req, res) => {
   const locals = {
@@ -18,24 +20,30 @@ export const signup = async (req, res) => {
   res.render("signup", locals);
 };
 
+//----------------------------------
+
 export const postsignup = async (req, res) => {
 
-  let { fname, lname, username, email, password } = req.body;
+  const inputPassword = (req.body.password)
+  const hashedPassword = hashPassword(inputPassword, salt);
+  const { fname, lname, username, email } = req.body
+  
   const newUser = new User({
     fname,
     lname,
     username,
     email,
-    password,
+    password: hashedPassword,
+    salt: salt
   });
 
   try {
-
     await User.create(newUser);
     const locals = {
-      layout: './layouts/full-page',
+      layout: "./layouts/full-page",
       successMsg: `Congratulations ${newUser.fname}!  Your registration was completed successfully.`
     };
+    
     res.render("success", locals);
   } catch (error) {
     console.log(error);
@@ -43,42 +51,43 @@ export const postsignup = async (req, res) => {
 };
 
 export const loginpg = async (req, res) => {
- 
-    const locals = {
+  const locals = {
     title: "Login",
     description: "Login on the Wednesday App",
-    layout: "login",
-    };
+    layout: "./layouts/full-page",
+  };
 
   try {
-
     res.render("login", locals);
-
   } catch (error) {
     console.log(error);
   }
 };
 
 export const postlogin = async (req, res) => {
+
   try {
-    const query = {username: req.body.username}
+    const query = { username: req.body.username };
     const user = await User.findOne(query);
     if (user == null) {
-      return res.status(400).send('User was not found');
-    };
-    if (req.body.username !== user.username || req.body.password !== user.password) {
-      return res.status(400).send('Username or password does not match our records');
-    };
+      return res.status(400).send("User was not found");
+    }
+    const inputPassword = req.body.password;
+    const isMatch = comparePassword(inputPassword, user.password, user.salt);
     const locals = {
-      title: "Login",
-      description: "Login to the Wednesday App",
-      layout: "./layouts/full-page",
-      successMsg: `Welcome ${user.username}, you are logged in.`,
+    title: "Login",
+    description: "Login to the Wednesday App",
+    layout: "./layouts/full-page",
+    successMsg: `Welcome ${user.username}, you are logged in.`,
     };
-    res.render('success', locals)
+    if (!isMatch) {
+      return res.status(400).send('The username and password do not match our records.')
+    }
+    if (isMatch) {
+       return res.render("success", locals);
+    }
+
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
-
-
+};

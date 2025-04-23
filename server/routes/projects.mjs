@@ -1,6 +1,5 @@
 import express from "express";
-import { ObjectId } from "mongodb";
-import path from "path";
+
 
 const projectsRouter = express.Router();
 

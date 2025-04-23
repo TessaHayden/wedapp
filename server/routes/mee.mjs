@@ -1,6 +1,4 @@
 import express from "express";
-import { ObjectId } from "mongodb";
-import path from "path";
 
 const meeRouter = express.Router();
 

@@ -1,7 +1,5 @@
 import Product from "../models/Product.mjs";
-import fs from 'fs';
 import { console } from "inspector/promises";
-import path from "path";
 
 
 export const productspage = async (req, res) => {
