@@ -1,5 +1,6 @@
 import Product from "../models/Product.mjs";
 import { console } from "inspector/promises";
+import corsWithOptions from "../routes/cors.mjs";
 
 
 export const productspage = async (req, res) => {
