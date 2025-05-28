@@ -13,16 +13,6 @@ authRouter.get("/login", corsWithOptions, authController.loginpg);
 authRouter.post("/login", corsWithOptions, authController.postlogin);
 
 authRouter.get(
-  "/profile",
-  corsWithOptions,
-  verifyToken,
-  isUser,
-  authController.profilepg
-);
-
-authRouter.get("/cart", verifyToken, isUser, authController.cartpage);
-
-authRouter.get(
   "/logout",
   corsWithOptions,
   verifyToken,

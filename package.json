@@ -20,6 +20,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.0.6",
     "http": "^0.0.1-security",
+    "http-errors": "^2.0.0",
     "https": "^1.0.0",
     "jest-serializer-ansi-escapes": "^4.0.0",
     "jsonwebtoken": "^9.0.2",

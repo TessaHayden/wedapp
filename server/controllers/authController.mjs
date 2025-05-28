@@ -81,7 +81,7 @@ export const postlogin = async (req, res, next) => {
     if (!isMatch) {
       res
         .status(400)
-        .send("The username && || password do not match our records.");
+        .send("The username and password do not match our records.");
     }
 
     if (isMatch) {
@@ -102,27 +102,6 @@ export const postlogin = async (req, res, next) => {
   
 };
 
-export const profilepg = async (req, res, next) => {
-
-  try {
-    const user = await User.find({ user: req.user._id })
-    const locals = {
-      title: `${user.username}`,
-      description: "User's profile page",
-      layout: "./layouts/full-page",
-      successMsg: `Welcome ${user.username}, you are logged in.`,
-      user,
-    };
-    if (user === null) {
-      res.json({message: user})
-    }
-    res.render("profile", locals)
-  } catch (error) {
-    console.log(error);
-  }
-  
-};
-
 export const logoutpg = async (req, res, next) => {
   const locals = {
     title: "Log Out",
@@ -132,18 +111,7 @@ export const logoutpg = async (req, res, next) => {
   };
   try {
     res.render("success", locals);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const cartpage = async (req, res) => {
-  try {
-    const locals = {
-      title: "Shopping Cart",
-      layout: "./layouts/shoppingcart.ejs",
-    };
-    res.render("cart", locals);
+    next()
   } catch (error) {
     console.log(error);
   }
